@@ -40,7 +40,7 @@ h1 .b{color:var(--red);display:block}
 .cta{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0}
 .meta{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:#D6DAE3}
 .meta b{color:var(--gold)}
-.pic{border-radius:16px;overflow:hidden;box-shadow:0 0 80px rgba(200,16,46,.28)}
+.pic{position:relative;border-radius:18px;overflow:hidden;border:1px solid #7a1527;box-shadow:0 0 0 7px rgba(200,16,46,.12),0 30px 90px rgba(200,16,46,.45)}.pic::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.7));pointer-events:none}.chip{position:absolute;left:16px;bottom:16px;z-index:2;background:rgba(0,0,0,.72);border:1px solid var(--gold);color:var(--gold);font-weight:700;font-size:13px;padding:8px 14px;border-radius:999px;backdrop-filter:blur(4px)}
 .pic img{display:block;width:100%;height:auto}
 
 section{padding:88px 0}
@@ -111,6 +111,40 @@ input,select,textarea{font:400 16px var(--f);padding:13px 12px;border:1px solid 
 .il small{display:block;color:var(--mute)}
 footer{border-top:1px solid var(--line);padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--mute);font-size:14px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.hero{background:linear-gradient(90deg,rgba(0,0,0,.97) 32%,rgba(0,0,0,.7)),url('stage.jpg') center/cover}
+h1{font-size:clamp(46px,7.4vw,80px);line-height:1.02;letter-spacing:-.02em}
+h1 .b{text-shadow:0 0 40px rgba(200,16,46,.55)}
+.hero .btn:not(.out){box-shadow:0 10px 34px rgba(200,16,46,.5)}
+h2::after{content:'';display:block;width:70px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--red),var(--gold));margin:16px auto 0}
+.mq{background:var(--red);color:#fff;overflow:hidden;white-space:nowrap;padding:14px 0;font-weight:800;letter-spacing:.14em;font-size:14px;text-transform:uppercase;transform:skewY(-1.2deg);margin:-10px 0 10px}
+.mq div{display:inline-block;animation:mq 28s linear infinite}
+.mq span{margin:0 26px}.mq i{font-style:normal;color:#FFD54A}
+@keyframes mq{to{transform:translateX(-50%)}}
+.st{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:56px 0 20px;text-align:center}
+@media(max-width:700px){.st{grid-template-columns:1fr 1fr;row-gap:30px}}
+.st b{display:block;font-size:clamp(40px,6vw,62px);font-weight:800;line-height:1;background:linear-gradient(180deg,#FFE08A,var(--gold) 60%,#B8860B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.st small{color:#D6DAE3;font-size:15px}
+.c,.p,.row{transition:transform .25s,border-color .25s,box-shadow .25s}
+.c:hover,.p:hover{transform:translateY(-6px);border-color:#7a1527;box-shadow:0 16px 40px rgba(200,16,46,.22)}
+.p.hot{transform:scale(1.04);border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 24px 70px rgba(200,16,46,.4)}
+.p.hot:hover{transform:scale(1.04) translateY(-6px)}
+@media(max-width:900px){.p.hot{transform:none}}
+.m.o{box-shadow:0 0 14px rgba(232,176,18,.5)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.on{opacity:1;transform:none}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:18;opacity:0;pointer-events:none;transition:opacity .3s;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.fab.on{opacity:1;pointer-events:auto}
+@media(prefers-reduced-motion:reduce){.mq div{animation:none}.rv{opacity:1;transform:none;transition:none}}
+
+.car{aspect-ratio:6/5}
+.car .sl{position:absolute;inset:0;opacity:0;transition:opacity .9s}
+.car .sl.on{opacity:1}
+.car .sl img{width:100%;height:100%;object-fit:cover}
+.dots{position:absolute;right:16px;bottom:20px;z-index:3;display:flex;gap:8px}
+.dots button{width:11px;height:11px;padding:0;border-radius:50%;border:0;background:rgba(255,255,255,.45);cursor:pointer}
+.dots button.on{background:var(--red);width:28px;border-radius:8px}
+@media(prefers-reduced-motion:reduce){.car .sl{transition:none}}
 </style>
 </head>
 <body>
@@ -126,10 +160,10 @@ footer{border-top:1px solid var(--line);padding:28px 0 calc(28px + env(safe-area
     <h1><span class="a">Transforma tu</span><span class="b">físico natural</span></h1>
     <p>Alcanza tu máximo potencial en el fisiculturismo natural con planes personalizados de entrenamiento y nutrición diseñados por un experto.</p>
     <div class="cta"><a class="btn" href="#planes">Ver planes disponibles →</a><a class="btn out" href="#contacto">Consulta gratuita</a></div>
-    <div class="meta"><span><b>★★★★★</b> 5.0 (200+ reseñas)</span><span>👥 500+ atletas entrenados</span></div>
-  </div>
-  <div class="pic"><img src="hero.jpg" alt="Atletas del team con la pro card WNBF Chile"></div>
+    </div>
+  <div class="pic car" role="group" aria-roledescription="carrusel" aria-label="Fotos del team"><div class="sl on"><img src="hero.jpg" alt="Atletas del team con la pro card WNBF Chile"><span class="chip">🏆 WNBF Chile · Classic Physique PRO</span></div><div class="sl"><img src="slide3.jpg" style="object-position:50% 12%" alt="Atleta del team con su medalla y su entrenador en WNBF Perú"><span class="chip">🏅 WNBF Perú</span></div><div class="dots"><button type="button" class="on" aria-label="Foto 1"></button><button type="button" aria-label="Foto 2"></button></div></div>
 </div></section>
+<div class="mq" aria-hidden="true"><div><span>WNBF</span><i>★</i><span>INBA</span><i>★</i><span>Classic Physique</span><i>★</i><span>Men’s Physique</span><i>★</i><span>Bodybuilding</span><i>★</i><span>100% natural</span><i>★</i><span>WNBF</span><i>★</i><span>INBA</span><i>★</i><span>Classic Physique</span><i>★</i><span>Men’s Physique</span><i>★</i><span>Bodybuilding</span><i>★</i><span>100% natural</span><i>★</i></div></div>
 
 <section id="sobre-mi" style="padding-top:40px"><div class="w">
   <h2>Sobre mí</h2>
@@ -216,6 +250,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 calc(28px + env(safe-area
 </main>
 
 <footer><div class="w">© 2026 JTapiaTeam. Todos los derechos reservados.</div></footer>
+<a class="btn fab" href="#contacto">Agendar reunión gratis</a>
 
 <script>
 var WA="56900000000"; // Reemplazar por el WhatsApp real (código de país + número)
@@ -225,6 +260,23 @@ document.getElementById("f").addEventListener("submit",function(e){
   var m="Hola, quiero agendar una reunión con JTapiaTeam.\nNombre: "+f.n.value+"\nWhatsApp: "+f.w.value+"\nPlan: "+f.p.value+"\nDía: "+f.d.value+" ("+f.h.value+")\nObjetivo: "+(f.o.value||"-");
   window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(m),"_blank","noopener");
 });
+
+(function(){var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var els=document.querySelectorAll('.c,.p,h2,.sub,.stage,.about img,.st>div,form');
+if('IntersectionObserver' in window&&!rm){var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}})},{threshold:.12});els.forEach(function(e){e.classList.add('rv');io.observe(e)})}
+var cs=document.querySelectorAll('[data-n]');
+function run(el){var n=+el.dataset.n,s=el.dataset.s||'',t0=null;function f(ts){t0=t0||ts;var p=Math.min((ts-t0)/1400,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3)))+s;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+if('IntersectionObserver' in window&&!rm){var co=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){run(x.target);co.unobserve(x.target)}})});cs.forEach(function(c){co.observe(c)})}else{cs.forEach(function(c){c.textContent=c.dataset.n+(c.dataset.s||'')})}
+var fab=document.querySelector('.fab');addEventListener('scroll',function(){fab.classList.toggle('on',scrollY>700&&!(document.getElementById('contacto').getBoundingClientRect().top<innerHeight*.6))},{passive:true});
+})();
+
+(function(){var car=document.querySelector('.car');if(!car)return;var sl=car.querySelectorAll('.sl'),ds=car.querySelectorAll('.dots button'),i=0,tm;
+function go(n){i=(n+sl.length)%sl.length;sl.forEach(function(s,k){s.classList.toggle('on',k===i)});ds.forEach(function(d,k){d.classList.toggle('on',k===i)})}
+function start(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;stop();tm=setInterval(function(){go(i+1)},5000)}
+function stop(){clearInterval(tm)}
+ds.forEach(function(d,k){d.addEventListener('click',function(){go(k);start()})});
+car.addEventListener('mouseenter',stop);car.addEventListener('mouseleave',start);start();
+})();
 </script>
 </body>
 </html>
